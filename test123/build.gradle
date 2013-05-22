@@ -48,6 +48,17 @@ uploadArchives {
 	}
 }
 
+uploadArchives {
+	repositories.mavenDeployer {
+		repository(url: repositoryURL + "/libs-release-local") {
+			authentication(userName: cloudRepoUser, password: cloudRepoPassword)
+		}
+		snapshotRepository(url: repositoryURL + "/libs-snapshot-local") {
+			authentication(userName: cloudRepoUser, password: cloudRepoPassword)
+		}
+	}
+}
+
 // custom tasks for creating source/javadoc jars
 task sourcesJar(type: Jar, dependsOn:classes) {
 	 classifier = 'sources'
